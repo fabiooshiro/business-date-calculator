@@ -100,13 +100,14 @@
          * Caso contrario lanca um ArrayIndexOutOfBoundsException.
          */
         function rangeCheck(date) {
-            if (date < startDate) {
+            if (date < obj.startDate) {
                 console.log("Reconstruindo calculadora de feriados pois dia ${date} eh menor que ${startDate}");
                 build(date, endDate, holidays);
             }
-            else if (date > endDate) {
-                console.log("Reconstruindo calculadora de feriados pois dia ${date} eh maior que ${endDate}");
-                build(startDate, date.plusDays(252), holidays);
+            else if (date > obj.endDate) {
+                var newEndDate = moment(date).add(100, 'days').format('YYYY-MM-DD');
+                //console.log("Reconstruindo calculadora de feriados pois dia " + date + " eh maior que " + obj.endDate + ", ate " + newEndDate);
+                build(obj.startDate, newEndDate, obj.holidays);
             }
         }
 

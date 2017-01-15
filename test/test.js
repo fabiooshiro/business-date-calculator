@@ -9,6 +9,11 @@ describe('BusinessDateCalculator', function() {
         var bdc = BusinessDateCalculator('2017-01-01', '2017-01-14', []);
         assert.equal(bdc.endDate, '2017-01-16');
     });
+    it('should expand the calendar', function() {
+        var bdc = BusinessDateCalculator('2017-01-01', '2017-01-14', []);
+        bdc.networkdays('2017-01-01', '2017-01-17');
+        assert.equal(bdc.endDate, '2017-04-27');
+    });
     describe('.isHoliday', function() {
         it('should returns true when the date is sunday', function() {
             var bdc = BusinessDateCalculator('2017-01-01', '2017-01-31', []);
