@@ -101,7 +101,7 @@
          */
         function rangeCheck(date) {
             if (date < obj.startDate) {
-                console.log("Reconstruindo calculadora de feriados pois dia ${date} eh menor que ${startDate}");
+                //console.log("Reconstruindo calculadora de feriados pois dia ${date} eh menor que ${startDate}");
                 build(date, endDate, holidays);
             }
             else if (date > obj.endDate) {

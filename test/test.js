@@ -76,6 +76,7 @@ describe('BusinessDateCalculator', function() {
             for (var i = 0; i < 100000; i++) {
                 bdc.networkdays('2017-01-02', '2017-01-31');
             }
+            console.log(10.0 - 10.1);
         });
     });
 });
