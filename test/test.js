@@ -1,6 +1,10 @@
 var BusinessDateCalculator = require('../bdc.js');
 var assert = require('assert');
 describe('BusinessDateCalculator', function() {
+    it('should create a object very fast', function() {
+        this.timeout(10000);
+        var bdc = BusinessDateCalculator('2001-01-01', '2078-12-25', []);
+    });
     it('should returns the calendar starting on friday', function() {
         var bdc = BusinessDateCalculator('2017-01-01', '2017-01-31', []);
         assert.equal(bdc.startDate, '2016-12-30');

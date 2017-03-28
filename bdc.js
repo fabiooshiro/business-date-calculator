@@ -78,8 +78,9 @@
 
             var d = startDate;
             var i = 0;
+            var dt = new Date(d); // generates UTC date
             while (d <= endDate) {
-                dayOfWeek = moment(d).day();
+                dayOfWeek = dt.getUTCDay();
                 if (dayOfWeek != SATURDAY && dayOfWeek != SUNDAY && holidays.indexOf(d) == -1) {
                     // dia util, adiciona ao final do array, e mapeia o indice do array no mapa
                     obj.businessDates.push(d);
@@ -91,8 +92,25 @@
                     obj.nextBusinessDateIndex[d] = i;
                     obj.prevBusinessDateIndex[d] = i - 1;
                 }
-                d = moment(d).add(1, 'day').format('YYYY-MM-DD');
+                dt.setUTCDate(dt.getUTCDate() + 1);
+                d = format(dt);
             }
+        }
+
+        function getDay(dt) {
+            return dt.getUTCDay();
+        }
+
+        function format(dt) {
+            var day = dt.getUTCDate();
+            if (day < 10) {
+                day = '0' + day;
+            }
+            var month = dt.getUTCMonth() + 1;
+            if (month < 10) {
+                month = '0' + month;
+            }
+            return dt.getUTCFullYear() + '-' + month + '-' + day;
         }
 
         /**
