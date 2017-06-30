@@ -1,14 +1,30 @@
 (function() {
     var moment = require('moment');
-    
-    var SATURDAY = 6, SUNDAY = 0;
-    
+
+    var SATURDAY = 6,
+        SUNDAY = 0;
+
     module.exports = BusinessDateCalculator;
 
     return;
-    
+
     function BusinessDateCalculator(startDate, endDate, holidays) {
         var obj = {};
+        if (typeof startDate === 'object' && endDate === undefined && holidays === undefined) {
+            obj = startDate;
+            obj.isHoliday = isHoliday;
+
+            obj.getAdjustedDateIndex = getAdjustedDateIndex;
+
+            obj.adjust = adjust;
+
+            obj.advanceBusinessDays = advanceBusinessDays;
+
+            obj.getNumberOfBusinessDaysBetween = getNumberOfBusinessDaysBetween;
+
+            obj.networkdays = networkdays;
+            return obj;
+        }
         obj.startDate = startDate;
         obj.endDate = endDate;
         obj.holidays = holidays;
@@ -47,11 +63,11 @@
         obj.advanceBusinessDays = advanceBusinessDays;
 
         obj.getNumberOfBusinessDaysBetween = getNumberOfBusinessDaysBetween;
-        
+
         obj.networkdays = networkdays;
 
         return obj;
-        
+
         function networkdays(startDate, endDate) {
             return obj.getNumberOfBusinessDaysBetween(startDate, endDate, 'following', 'preceding');
         }

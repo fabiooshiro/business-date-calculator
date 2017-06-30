@@ -97,4 +97,12 @@ describe('BusinessDateCalculator', function() {
             assert.equal(bdc.advanceBusinessDays('2017-01-09', 3, 'preceding'), '2017-01-12');
         });
     });
+    describe('load', function() {
+        it('should load the json', function() {
+            var bdc = BusinessDateCalculator('2017-01-01', '2017-01-31', ['2017-01-03']);
+            var json = JSON.parse(JSON.stringify(bdc));
+            bdc = BusinessDateCalculator(json);
+            assert.equal(bdc.advanceBusinessDays('2017-01-09', 3, 'preceding'), '2017-01-12');
+        });
+    });
 });
