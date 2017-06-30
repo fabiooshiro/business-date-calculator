@@ -209,7 +209,7 @@
 
         function advanceBusinessDays(date, n, convention) {
             rangeCheck(date);
-            obj.businessDates[obj.getAdjustedDateIndex(date, convention) + n];
+            return obj.businessDates[obj.getAdjustedDateIndex(date, convention) + n];
         }
 
         /*

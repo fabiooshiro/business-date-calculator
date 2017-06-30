@@ -83,4 +83,18 @@ describe('BusinessDateCalculator', function() {
             console.log(10.0 - 10.1);
         });
     });
+    describe('.advanceBusinessDays', function() {
+        it('should compute 3 days ahead - following', function() {
+            var bdc = BusinessDateCalculator('2017-01-01', '2017-01-31', ['2017-01-03']);
+            assert.equal(bdc.advanceBusinessDays('2017-01-01', 3, 'following'), '2017-01-06');
+        });
+        it('should compute 3 days ahead - preceding', function() {
+            var bdc = BusinessDateCalculator('2017-01-01', '2017-01-31', ['2017-01-03']);
+            assert.equal(bdc.advanceBusinessDays('2017-01-01', 3, 'preceding'), '2017-01-05');
+        });
+        it('should compute 3 days ahead', function() {
+            var bdc = BusinessDateCalculator('2017-01-01', '2017-01-31', ['2017-01-03']);
+            assert.equal(bdc.advanceBusinessDays('2017-01-09', 3, 'preceding'), '2017-01-12');
+        });
+    });
 });
